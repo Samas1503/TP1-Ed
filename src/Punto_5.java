@@ -204,17 +204,13 @@ public class Punto_5 {
 
     //* se cargan los datos de las ArrayList con datos precargados
     private Libro cargarLibroAleatorio() {
-        Libro nuevo;
-        String titulo, editorial, autor;
-        int anio;
-        double precio;
+        Libro nuevo= new Libro();
         Random random = new Random();
-        titulo = this.titulos.get(random.nextInt(this.titulos.size()));
-        editorial = this.editoriales.get(random.nextInt(this.editoriales.size()));
-        autor = this.autores.get(random.nextInt(this.autores.size()));
-        anio = this.anios.get(random.nextInt(this.anios.size()));
-        precio = this.precios.get(random.nextInt(this.precios.size()));
-        nuevo = new Libro(titulo, autor, editorial, anio, precio);
+        nuevo.setTitulo(this.titulos.get(random.nextInt(this.titulos.size())));
+        nuevo.setEditorial(this.editoriales.get(random.nextInt(this.editoriales.size())));
+        nuevo.setAutor(this.autores.get(random.nextInt(this.autores.size())));
+        nuevo.setAnioPublicacion(this.anios.get(random.nextInt(this.anios.size())));
+        nuevo.setPrecio(this.precios.get(random.nextInt(this.precios.size())));
         return nuevo;
     }
 
