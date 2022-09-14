@@ -141,11 +141,11 @@ public class Punto5 {
 
     // * Se ingresa la cantidad de lobros que se desean ingresar
     private ArrayList<Libro> agregarLibros(ArrayList<Libro> libros) {
-        Scanner sc = new Scanner(System.in);
         int cant;
         try {
-            System.out.println("Cuantos libros desea agregar? \n Cantidad:");
+            System.out.println("Cuantos libros desea agregar? \nCantidad:");
             cant = sc.nextInt();
+            sc.nextLine();
             if (cant >= 1) {
                 Libro nuevo = new Libro();
                 for (int i = 1; i <= cant; i++) {
@@ -162,13 +162,11 @@ public class Punto5 {
         } catch (Exception e) {
             System.out.println("Error de ingreso: " + e);
         }
-        sc.close();
         return libros;
     }
 
     // * Pide y carga los datos en una objeto Libro
     private Libro cargarLibro(Libro nuevo, int i) {
-        Scanner sc = new Scanner(System.in);
         String titulo, editorial, autor;
         int anio;
         double precio;
@@ -181,13 +179,14 @@ public class Punto5 {
             autor = sc.nextLine();
             System.out.println("Ingrese Año de Publicacion del Libro nro. " + i + " a agregar: ");
             anio = sc.nextInt();
+            sc.nextLine();
             System.out.println("Ingrese Precio del Libro nro. " + i + " a agregar: ");
             precio = sc.nextDouble();
+            sc.nextLine();
             nuevo = new Libro(titulo, autor, editorial, anio, precio);
         } catch (Exception e) {
             System.out.println("Error al ingresar los datos del libro " + i + ": " + e);
         }
-        sc.close();
         return nuevo;
     }
 

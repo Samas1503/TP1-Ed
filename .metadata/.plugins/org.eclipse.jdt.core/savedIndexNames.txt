@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/home/samuel/Documentos/Facultad de Ingenieria/Ing. Informatica/Estructura de Datos/TP1-Ed/.metadata/.plugins/org.eclipse.jdt.core
+258585374.index
+3445557453.index
