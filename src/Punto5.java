@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import Models.Libro;
 
-public class Punto_5 {
+public class Punto5 {
     Scanner sc = new Scanner(System.in);
     private ArrayList<String> titulos = new ArrayList<String>() {
         {
