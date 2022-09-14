@@ -119,9 +119,13 @@ public class Punto5 {
                         break;
                     case 3:
                         System.out.println("Ingrese el Nombre del Autor o de la Editorial para Realizar la busqueda: ");
+                        sc.nextLine();
                         palabra = sc.nextLine();
                         aux = filtrarAutorEditorial(libros, palabra);
-                        mostrarLibros(aux);
+                        if(aux.size()==0)
+                            System.out.println("No se encontro ningun Libro con el autor o editorial ingresado");
+                        else
+                            mostrarLibros(aux);
                         break;
                     case 4:
                         System.out.println("Ingrese un Precio para contar los libros que tengan un precio menor: ");
