@@ -5,7 +5,7 @@ import java.util.Scanner;
 import Models.Libro;
 
 public class Punto_5 {
-    private Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     private ArrayList<String> titulos = new ArrayList<String>() {
         {
             add("El señor de los Anillos");
@@ -90,8 +90,8 @@ public class Punto_5 {
         int op = -1;
         double precio;
         String palabra;
-        do {
-            try {
+        try {
+            do {
                 System.out.println("*********************************************");
                 System.out.println("*                    MENU                   *");
                 System.out.println("*********************************************");
@@ -103,43 +103,45 @@ public class Punto_5 {
                 System.out.println("*                 0- SALIR                  *");
                 System.out.println("*********************************************");
                 op = sc.nextInt();
-            } catch (Exception e) {
-                System.out.println("Error al ingresar datos: " + e);
-            }
-            switch (op) {
-                case 0:
-                    System.out.println("Saliendo del Programa...");
-                    break;
-                case 1:
-                    libros = agregarLibros(libros);
-                    System.out.println("Esta seria la lista completa de Libros almacenados");
-                    mostrarLibros(libros);
-                    break;
-                case 2:
-                    libros = agregarLibrosAleatorios(libros);
-                    System.out.println("Esta seria la lista completa de Libros almacenados");
-                    mostrarLibros(libros);
-                    break;
-                case 3:
-                    System.out.println("Ingrese el Nombre del Autor o de la Editorial para Realizar la busqueda: ");
-                    palabra = sc.nextLine();
-                    aux = filtrarAutorEditorial(libros, palabra);
-                    mostrarLibros(aux);
-                    break;
-                case 4:
-                    System.out.println("Ingrese un Precio para contar los libros que tengan un precio menor: ");
-                    precio = sc.nextDouble();
-                    System.out.println("Se encontraron " + filtarMenorPrecio(libros, precio)
-                            + " Libros cuyo precio es menor a $" + precio);
-                    break;
-                default:
-                    System.out.println(op == -1 ? "" : "Opcion incorrecta");
-            }
-        } while (op != 0);
+                switch (op) {
+                    case 0:
+                        System.out.println("Saliendo del Programa...");
+                        break;
+                    case 1:
+                        libros = agregarLibros(libros);
+                        System.out.println("Esta seria la lista completa de Libros almacenados");
+                        mostrarLibros(libros);
+                        break;
+                    case 2:
+                        libros = agregarLibrosAleatorios(libros);
+                        System.out.println("Esta seria la lista completa de Libros almacenados");
+                        mostrarLibros(libros);
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el Nombre del Autor o de la Editorial para Realizar la busqueda: ");
+                        palabra = sc.nextLine();
+                        aux = filtrarAutorEditorial(libros, palabra);
+                        mostrarLibros(aux);
+                        break;
+                    case 4:
+                        System.out.println("Ingrese un Precio para contar los libros que tengan un precio menor: ");
+                        precio = sc.nextDouble();
+                        System.out.println("Se encontraron " + filtarMenorPrecio(libros, precio)
+                                + " Libros cuyo precio es menor a $" + precio);
+                        break;
+                    default:
+                        System.out.println(op == -1 ? "" : "Opcion incorrecta");
+                }
+            } while (op != 0);
+        } catch (Exception e) {
+            System.out.println("Error al ingresar datos: " + e);
+        }
+        sc.close();
     }
 
-    //* Se ingresa la cantidad de lobros que se desean ingresar
+    // * Se ingresa la cantidad de lobros que se desean ingresar
     private ArrayList<Libro> agregarLibros(ArrayList<Libro> libros) {
+        Scanner sc = new Scanner(System.in);
         int cant;
         try {
             System.out.println("Cuantos libros desea agregar? \n Cantidad:");
@@ -148,10 +150,10 @@ public class Punto_5 {
                 Libro nuevo = new Libro();
                 for (int i = 1; i <= cant; i++) {
                     nuevo = cargarLibro(nuevo, i);
-                    if(nuevo!=null){
+                    if (nuevo != null) {
                         libros.add(nuevo);
                         System.out.println("Se agrego el libro Correctamente \n");
-                    } else{
+                    } else {
                         System.out.println("Ingrese nuevamente.");
                         i--;
                     }
@@ -160,11 +162,13 @@ public class Punto_5 {
         } catch (Exception e) {
             System.out.println("Error de ingreso: " + e);
         }
+        sc.close();
         return libros;
     }
-    
-    //* Pide y carga los datos en una objeto Libro
+
+    // * Pide y carga los datos en una objeto Libro
     private Libro cargarLibro(Libro nuevo, int i) {
+        Scanner sc = new Scanner(System.in);
         String titulo, editorial, autor;
         int anio;
         double precio;
@@ -183,10 +187,11 @@ public class Punto_5 {
         } catch (Exception e) {
             System.out.println("Error al ingresar los datos del libro " + i + ": " + e);
         }
+        sc.close();
         return nuevo;
     }
-    
-    //* Se ingresa la cantidad de libros aleatorios que se cargaran
+
+    // * Se ingresa la cantidad de libros aleatorios que se cargaran
     private ArrayList<Libro> agregarLibrosAleatorios(ArrayList<Libro> libros) {
         int cant;
         try {
@@ -202,10 +207,10 @@ public class Punto_5 {
         return libros;
     }
 
-    //* se cargan los datos de las ArrayList con datos precargados
+    // * se cargan los datos de las ArrayList con datos precargados
     private Libro cargarLibroAleatorio() {
-        Libro nuevo= new Libro();
         Random random = new Random();
+        Libro nuevo = new Libro();
         nuevo.setTitulo(this.titulos.get(random.nextInt(this.titulos.size())));
         nuevo.setEditorial(this.editoriales.get(random.nextInt(this.editoriales.size())));
         nuevo.setAutor(this.autores.get(random.nextInt(this.autores.size())));
@@ -214,7 +219,7 @@ public class Punto_5 {
         return nuevo;
     }
 
-    //* Filtra los libros cuyo precio sea menor al ingresado
+    // * Filtra los libros cuyo precio sea menor al ingresado
     private int filtarMenorPrecio(ArrayList<Libro> libros, double precio) {
         int cont = 0;
         for (Libro l : libros)
@@ -222,8 +227,8 @@ public class Punto_5 {
                 cont++;
         return cont;
     }
-    
-    //* Filtra los Libros segun su editorial o autor
+
+    // * Filtra los Libros segun su editorial o autor
     private ArrayList<Libro> filtrarAutorEditorial(ArrayList<Libro> libros, String palabra) {
         ArrayList<Libro> filtrado = new ArrayList<Libro>();
         for (Libro l : libros)
@@ -232,9 +237,9 @@ public class Punto_5 {
         return filtrado;
     }
 
-    //* Muestra los libros
+    // * Muestra los libros
     private void mostrarLibros(ArrayList<Libro> libros) {
-        for(Libro l : libros )
-            l.toString();
+        for (Libro l : libros)
+            System.out.println(l.toString());
     }
 }
