@@ -61,7 +61,7 @@ public class Libro {
                 "\n" + (anioPublicacion!=0 ? "    Año de Publicacion: " + anioPublicacion : "") +
                 "\n" + (autor != null ? "    Autor: " + autor  : "") +
                 "\n" + (editorial != null ? "    Editorial: " + editorial : "") +
-                "\n" + (precio!=0 ? "    Precio: " + precio : "    Gratis");
+                "\n" + (precio!=0 ? "    Precio: $" + precio : "    Gratis");
     }
 
     
