@@ -1,28 +1,27 @@
-import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 
 public class Punto4 {
-    Scanner sc = new Scanner(System.in);
-    ArrayList<Integer> arreglo = new ArrayList<Integer>();
+    private Scanner sc = new Scanner(System.in);
+    private ArrayList<Integer> serieFibo = new ArrayList<Integer>();
     String opc = "";
 
-    public void principal() {
-        arreglo.clear();
-        arreglo.add(0);
-        arreglo.add(1);
-        serieFibonacci();
-        calculosFibonacci();
+    public void pricipal() {
+        this.serieFibo.clear();
+        this.serieFibo.add(0);
+        this.serieFibo.add(1);
+        this.serieFibonacci();
+        this.calculosFibonacci();
         sc.close();
     }
 
-    public void serieFibonacci() {
+    private void serieFibonacci() {
 
         System.out.println("Primeros numeros de la serie de Fibonacci");
         try {
             do {
-                arreglo.add(sumaFibonacci());
-                System.out.println(arreglo);
+                this.serieFibo.add(sumaFibonacci());
+                System.out.println(this.serieFibo);
                 System.out.println("Desea continuar? (S/N)");
                 opc = sc.nextLine();
             } while (opc.equalsIgnoreCase("s"));
@@ -34,30 +33,29 @@ public class Punto4 {
         }
     }
 
-    public Integer sumaFibonacci() {
-        Integer ultimoNum = arreglo.get(arreglo.size()-1);
-        Integer penultimoNum = arreglo.get(arreglo.size()-2);
-        Integer sumatoria = ultimoNum + penultimoNum;
-        return sumatoria;
+    private int sumaFibonacci() {
+        int ultimoNum = this.serieFibo.get(this.serieFibo.size() - 1);
+        int penultimoNum = this.serieFibo.get(this.serieFibo.size() - 2);
+        return ultimoNum + penultimoNum;
     }
 
-    public void calculosFibonacci() {
-        Integer contadorPares = 1;
-        Integer contadorImpares = 0;
-        Integer sumatoriaPares = 0;
-        Integer sumatoriaImpares = 0;
-        Integer contadorTotal = 0;
-        Integer sumatoriaTotal = 0;
-        Integer promedio = 0;
-        Integer contadorNumMayores = 0;
+    private void calculosFibonacci() {
+        int contadorPares = 1;
+        int contadorImpares = 0;
+        int sumatoriaPares = 0;
+        int sumatoriaImpares = 0;
+        int contadorTotal = 0;
+        int sumatoriaTotal = 0;
+        int promedio = 0;
+        int contadorNumMayores = 0;
 
-        for (int i = 1; i < arreglo.size(); i++) {
-            if (arreglo.get(i) % 2 == 0) {
-                sumatoriaPares += arreglo.get(i);
-                contadorPares ++;
+        for (int i = 1; i < this.serieFibo.size(); i++) {
+            if (this.serieFibo.get(i) % 2 == 0) {
+                sumatoriaPares += this.serieFibo.get(i);
+                contadorPares++;
             } else {
-                sumatoriaImpares += arreglo.get(i);
-                contadorImpares ++;
+                sumatoriaImpares += this.serieFibo.get(i);
+                contadorImpares++;
             }
         }
 
@@ -70,9 +68,9 @@ public class Punto4 {
 
         System.out.println("El promedio de los numeros generados es: " + promedio);
 
-        for (int i = 0; i < arreglo.size(); i++) {
-            if (arreglo.get(i) > promedio) {
-                contadorNumMayores ++;
+        for (int i = 0; i < this.serieFibo.size(); i++) {
+            if (this.serieFibo.get(i) > promedio) {
+                contadorNumMayores++;
             }
         }
 
