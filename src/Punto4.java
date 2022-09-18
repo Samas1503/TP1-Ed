@@ -25,7 +25,9 @@ public class Punto4 {
                 System.out.println("Desea continuar? (S/N)");
                 opc = sc.nextLine();
             } while (opc.equalsIgnoreCase("s"));
-            if (!opc.equalsIgnoreCase("n")) {
+            if (opc.equalsIgnoreCase("n")) {
+                System.out.println("Finalizando Programa...");
+            } else {
                 System.out.println("Se ingreso una opcion incorrecta");
             }
         } catch (Exception e) {
