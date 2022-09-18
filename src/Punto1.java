@@ -36,9 +36,11 @@ public class Punto1 {
     private int[] leerArreglo(int[] arreglo, boolean carga) {
         System.out.println(carga ? "Cargando numeros deficientes..." : "Cargando numeros compuestos...");
         for (int i = 0; i < arreglo.length; i++) {
-            System.out.println("Ingrese el elemento " + (i + 1) + " del arreglo");
+            System.out.println("Ingrese el elemento " + i + 1 + " del arreglo");
             int num = sr.nextInt();
-            if (carga ? validarDeficiente(num) : detCompuestos(num)) { // si carga verdadero se llama a la funcion validarDeficiente y si no se llama a la funcion detCompuestos
+            if (carga == true ? validarDeficiente(num) : detCompuestos(num)) { // si carga verdadero se llama a la
+                                                                               // funcion validarDeficiente y si no se
+                                                                               // llama a la funcion detCompuestos
                 arreglo[i] = num;
             } else {
                 System.out.println(carga == true ? "El numero no es deficiente, intente nuevamente"
@@ -52,12 +54,15 @@ public class Punto1 {
     private boolean validarDeficiente(int num) {
         int divisor = 1;
         int acum = 0;
-        while (divisor<num){
+        boolean deficiente = false;
+        while (num > 0)
             if (num % divisor == 0)
                 acum = acum + divisor;
-            divisor = divisor + 1;
-        }
-        return acum < num;
+            else
+                divisor = divisor + 1;
+        if (acum < num)
+            deficiente = true;
+        return deficiente;
     }
 
     private int contarDivisores(int numero) {
@@ -79,9 +84,6 @@ public class Punto1 {
         int[] arreglo3 = new int[arreglo1.length];
         for (int i = 0; i < arreglo1.length; i++) // cualquier arreglo tiene la misma dim
             arreglo3[i] = arreglo1[i] - arreglo2[i];
-        System.out.println("muesra de arreglo");
-        for (int i = 0; i < arreglo1.length; i++)
-            System.out.println(arreglo3[i]);
         return arreglo3;
     }
 
@@ -97,32 +99,18 @@ public class Punto1 {
     // sino se muestran los valores del arreglo de num complejos que cumplen la
     // condicion
     private void mostrarArreglos(int[] arreglo, int media, boolean tipo) {
-        System.out.println(
-                tipo ? "Los valores del arreglo de numeros deficientes menores a la media = " + media + " son: "
-                        : "Los valores del arreglo de numeros compuestos mayores a la media = " + media + " son: ");
-        if(contarValores(arreglo, media, tipo)>0)
-            for (int i = 0; i < arreglo.length; i++){
-                if (tipo ? (arreglo[i] < media) : (arreglo[i] > media))
-                    System.out.println(arreglo[i] + " ");
-            }
-        else
-            System.out.println(tipo ? "El arrelo de num deficientes no posee valores que cumplan la condicion"
-                                        :"El arrelo de num compuestos no posee valores que cumplan la condicion");
-    }
-    
-    private int contarValores(int[] arreglo, int media, boolean tipo) {
-        int cont = 0;
+        System.out.println(tipo ? "Los valores del arreglo de numeros deficientes menores a la media son : "
+                : "Los valores del arreglo de numeros compuestos mayores a la media son: ");
         for (int i = 0; i < arreglo.length; i++)
-            if (tipo ? arreglo[i] < media : arreglo[i] > media)
-                cont++;
-        return cont;
+            if (tipo ? (arreglo[i] < media) : (arreglo[i] > media))
+                System.out.println(arreglo[i] + " ");
     }
 
     private int[] generaRandom(int[] arreglo, boolean carga) {
         Random ran = new Random();
         System.out.println(carga ? "Generando numeros deficientes..." : "Generenado numeros compuestos...");
         for (int i = 0; i < arreglo.length; i++) {
-            int num = ran.nextInt(1,1001);
+            int num = ran.nextInt();
             if (carga ? validarDeficiente(num) : detCompuestos(num))// si carga verdadero se llama a la funcion
                                                                     // validarDeficiente y si no se llama a la
                                                                     // funcion detCompuestos
